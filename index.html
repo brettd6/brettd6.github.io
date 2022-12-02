@@ -3,13 +3,42 @@
   <head>
     <meta charset="utf-8" />
     <title>Week 2 Activity</title>
+	<script>
+		function handleChange(value) {
+			window.localStorage.setItem("lang", value);
+			document.querySelector(`input[name="lang"][value=${value}]`).checked = true;
+			if (value === "en") {
+				document.getElementById("en").style.display  = "block";
+				document.getElementById("fr").style.display  = "none";
+			} else {
+				document.getElementById("en").style.display  = "none";
+				document.getElementById("fr").style.display  = "block";
+			}
+		}
+		function getLang() {
+			if (window.localStorage.getItem("lang"))
+				handleChange(window.localStorage.getItem("lang"));
+		}
+	</script>
   </head>
-  <body>
-    <h1>The San Jose Sharks</h1>
-    <p>Unfortunately the last couple seasons for this NHL team haven't gone so well... After signing <strong>Erik Karlsson</strong> to an 11.5m dollar contract
-    the team was unable to keep their captain, <strong>Joe Pavelski</strong>. Joe has been doing well on his new team in Dallas,
-    even making the <a href=https://www.nbcsports.com/bayarea/sharks/joe-pavelski-going-stanley-cup-final-after-stars-eliminate-sharks-rival>finals in 2022.</a>
-    At least the Sharks has a few promising rookies in <strong>Thomas Bordeleau</strong> and <strong>William Eklund</strong>, which should make 2022 interesting to watch.</p>
-    <img src="https://a.espncdn.com/i/teamlogos/nhl/500/sj.png"/>
+  <body onLoad=getLang()>
+	<input checked type="radio" name = "lang" id="lang" value = "en" onchange=handleChange(value)>English</input>
+	<input type="radio" name = "lang" id ="lang" value = "fr" onchange=handleChange(value)>French</input>
+	
+    <div id="en">
+		<h1>The San Jose Sharks</h1>
+		<p>Unfortunately the last couple seasons for this NHL team haven't gone so well... After signing <strong>Erik Karlsson</strong> to an $11.5m contract
+		the team was unable to keep their captain, <strong>Joe Pavelski</strong>. Joe has been doing well on his new team in Dallas,
+		even making the <a href=https://www.nbcsports.com/bayarea/sharks/joe-pavelski-going-stanley-cup-final-after-stars-eliminate-sharks-rival>finals in 2022.</a>
+		At least the Sharks has a few promising rookies in <strong>Thomas Bordeleau</strong> and <strong>William Eklund</strong>, which should make 2022 interesting to watch.</p>
+		<img src="https://a.espncdn.com/i/teamlogos/nhl/500/sj.png"/>
+	</div>
+	<div id="fr" hidden>
+		<h1>Les requins de San José</h1>
+		<p>Malheureusement, les deux dernières saisons de cette équipe de la LNH ne se sont pas si bien passées... Après avoir signé <strong>Erik Karlsson</strong> à un contrat $11.5m
+		l'équipe n'a pas pu garder son capitaine, <strong>Joe Pavelski</strong>. Joe a bien réussi dans sa nouvelle équipe à Dallas, faisant même le<a href=https://www.nbcsports.com/bayarea/sharks/joe-pavelski-going-stanley-cup-final-after-stars-eliminate-sharks-rival>finales en 2022.</a>
+		Au moins, les Sharks ont quelques recrues prometteuses dans <strong>Thomas Bordeleau</strong> et <strong>William Eklund</strong>, ce qui devrait rendre 2022 intéressant à regarder.</p>
+		<img src="https://a.espncdn.com/i/teamlogos/nhl/500/sj.png"/>
+	</div>
   </body>
 </html>
